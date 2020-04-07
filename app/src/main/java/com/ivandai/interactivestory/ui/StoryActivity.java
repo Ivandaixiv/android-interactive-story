@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.ivandai.interactivestory.R;
+import com.ivandai.interactivestory.model.Page;
 
 public class StoryActivity extends AppCompatActivity {
 
@@ -24,6 +25,8 @@ public class StoryActivity extends AppCompatActivity {
             name = "Friend";
         }
         Log.d(TAG, name);
+
+
 
     }
 }
