@@ -38,4 +38,8 @@ public class Story {
         pages[6] = new Page(R.drawable.page6, R.string.page6);
 
     }
+
+    public Page getPage(int pageNumber) {
+        return pages[pageNumber];
+    }
 }
