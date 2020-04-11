@@ -24,6 +24,7 @@ public class StoryActivity extends AppCompatActivity {
     private TextView storyTextView;
     private Button choice1Button;
     private Button choice2Button;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,12 @@ public class StoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_story);
 
         storyImageView = findViewById(R.id.storyImageView);
+        storyTextView = findViewById(R.id.storyTextView);
         choice1Button = findViewById(R.id.choice1Button);
         choice2Button = findViewById(R.id.choice2Button);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra(getString(R.string.key_name));
+        name = intent.getStringExtra(getString(R.string.key_name));
         
         if(name == null || name.isEmpty()) {
             name = "Friend";
@@ -50,5 +52,14 @@ public class StoryActivity extends AppCompatActivity {
         Page page = story.getPage(pageNumber);
         Drawable image = ContextCompat.getDrawable(this, page.getImageId());
         storyImageView.setImageDrawable(image);
+
+        String pageText = getString(page.getTextId());
+        // Adds the name if placeholder is included, won't if not
+        pageText = String.format(pageText, name);
+        Log.d(TAG, pageText);
+        storyTextView.setText(pageText);
+
+        choice1Button.setText(page.getChoice1().getTextId());
+        choice2Button.setText(page.getChoice2().getTextId());
     }
 }
